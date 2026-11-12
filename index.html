@@ -82,7 +82,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .over .on{opacity:1;transform:none}
 .o-title{font-size:clamp(15px,4.2vw,19px);letter-spacing:.14em;color:var(--gold);font-weight:600}
 .o-names{font-family:"Vibes",cursive;font-size:clamp(44px,13vw,70px);line-height:1.05;
-  background:linear-gradient(#c99a45,#6e4810);-webkit-background-clip:text;background-clip:text;color:transparent}
+  background:linear-gradient(var(--n1,#c99a45),var(--n2,#6e4810));-webkit-background-clip:text;background-clip:text;color:transparent}
 .o-when{font-size:clamp(20px,5.6vw,26px);font-weight:600}
 .o-place{font-size:clamp(16px,4.4vw,20px);color:var(--soft)}
 .skip{position:absolute;top:calc(14px + env(safe-area-inset-top));right:14px;padding:8px 14px;border-radius:20px;
@@ -198,6 +198,10 @@ const MOODS = {
   east:{paper:"#f1e2cf",paper2:"#e2ccb0",liner:"#a8323a",seal:"#8a1f24",seal2:"#540c11",ink:"#3a1d14",gold:"#a8803a",soft:"#6b4436",sheet:"#fbf3ea"},
   champ:{paper:"#f2e6da",paper2:"#e5d2c0",liner:"#c8a467",seal:"#a8814c",seal2:"#6e4f26",ink:"#45311f",gold:"#b08a4a",soft:"#6e5640",sheet:"#fbf5ef"},
   pastel:{paper:"#f8ecec",paper2:"#efd9da",liner:"#c9a07a",seal:"#b97882",seal2:"#7e4651",ink:"#4f3537",gold:"#b48a6a",soft:"#7a5a5c",sheet:"#fdf7f6"},
+  ny_gold:{paper:"#f6efe3",paper2:"#e9dcc4",liner:"#c9a35a",seal:"#7a1e2b",seal2:"#4f0f19",ink:"#3a2814",gold:"#b8893a",soft:"#6b5236",sheet:"#fcf8f1"},
+  ny_home:{n1:"#d0a04a",n2:"#8a2c1c",paper:"#f4e8da",paper2:"#e6d3bc",liner:"#b0503a",seal:"#9a2a1e",seal2:"#5e140d",ink:"#3a2014",gold:"#b0703a",soft:"#6b4436",sheet:"#fcf5ec"},
+  ny_party:{paper:"#f2e6d6",paper2:"#e4d0b4",liner:"#c8a467",seal:"#a8814c",seal2:"#6e4f26",ink:"#45311f",gold:"#b08a4a",soft:"#6e5640",sheet:"#fbf5ec"},
+  ny_fairy:{n1:"#9aa8e8",n2:"#3a447e",paper:"#eef1f9",paper2:"#dde3f2",liner:"#a9b4dc",seal:"#4a5a9a",seal2:"#2a3468",ink:"#262b48",gold:"#6f7bb8",soft:"#4a5070",sheet:"#f8f9fd"},
 };
 const TIMES = [0.8, 1.8, 7.6, 7.6];   // как в видео-шаблоне: заголовок, имена, детали
 

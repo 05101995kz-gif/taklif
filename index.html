@@ -98,6 +98,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .d-hero{width:100%;aspect-ratio:9/12;border-radius:14px;background:center 20%/cover no-repeat;box-shadow:0 14px 30px rgba(58,40,20,.22)}
 .d-title{margin-top:28px;font-size:19px;color:var(--gold);letter-spacing:.06em}
 .d-names{font-family:"Vibes",cursive;font-size:clamp(46px,13vw,64px);color:var(--ink);line-height:1.1;margin:.1em 0 .2em}
+/* в рукописном шрифте нет букв ӘҒҚҢӨҰҮҺӢӮҲҶ — для таких имён курсив Cormorant */
+.novibes .intro h1,.novibes .letter .mono,.novibes .seal .ini,.novibes .o-names,.novibes .d-names{font-family:"Cormorant",serif;font-style:italic;font-weight:500}
 .d-text{font-style:italic;font-size:20px;color:var(--soft)}
 .block{margin-top:34px;padding-top:26px;border-top:1px solid color-mix(in srgb,var(--gold) 40%,transparent)}
 .big{font-size:30px;font-weight:600}
@@ -191,7 +193,11 @@ const L = {
   uz: {for:"Sizga taklifnoma", from:"{x}dan", hint:"Ochish uchun muhrga teging", skip:"Batafsil",
        d:"kun", h:"soat", m:"daqiqa", cal:"Kalendarga qoʻshish", map:"Yoʻnalishni ochish", q:"Kelasizmi?",
        yes:"Ha, kelaman", two:"Ikki kishi kelamiz", no:"Afsuski, kela olmayman", done:"Rahmat! Javobingizni Telegramda tasdiqlang.",
-       foot:"Taklifnoma {b} orqali yaratildi. Sizga ham kerakmi? Bir necha daqiqa.", place:"Manzil", again:"Videoni qayta koʻrish"},
+       foot:"Taklifnoma {b} orqali yaratildi. Sizga ham kerakmi? Bir necha daqiqa.", place:"Manzil", again:"Videoni qayta koʻrish"},,
+  kk: {"for": "Сізге шақыру", "from": "{x} жіберді", "hint": "Ашу үшін мөрді басыңыз", "skip": "Толығырақ", "d": "күн", "h": "сағат", "m": "минут", "cal": "Күнтізбеге қосу", "map": "Бағытты ашу", "q": "Келесіз бе?", "yes": "Иә, келемін", "two": "Екеуміз келеміз", "no": "Өкінішке қарай, келе алмаймын", "done": "Рахмет! Жауабыңызды Telegram-да растаңыз.", "foot": "Шақыру {b} арқылы жасалды. Сізге де керек пе? Бірнеше минут.", "place": "Өтетін орны", "again": "Бейнені қайта көру"},
+  ky: {"for": "Сизге чакыруу", "from": "{x} жөнөттү", "hint": "Ачуу үчүн мөөрдү басыңыз", "skip": "Толугураак", "d": "күн", "h": "саат", "m": "мүнөт", "cal": "Календарга кошуу", "map": "Жолду ачуу", "q": "Келесизби?", "yes": "Ооба, келем", "two": "Экөөбүз келебиз", "no": "Тилекке каршы, келе албайм", "done": "Рахмат! Жообуңузду Telegram'да ырастаңыз.", "foot": "Чакыруу {b} аркылуу жасалды. Сизге да керекпи? Бир нече мүнөт.", "place": "Өтүүчү жери", "again": "Видеону кайра көрүү"},
+  tg: {"for": "Ба шумо даъватнома", "from": "аз {x}", "hint": "Барои кушодан муҳрро пахш кунед", "skip": "Муфассал", "d": "рӯз", "h": "соат", "m": "дақиқа", "cal": "Ба тақвим илова кардан", "map": "Кушодани масир", "q": "Шумо меоед?", "yes": "Ҳа, меоям", "two": "Ду нафар меоем", "no": "Афсӯс, омада наметавонам", "done": "Ташаккур! Ҷавобро дар Telegram тасдиқ кунед.", "foot": "Даъватнома дар {b} сохта шуд. Ба шумо ҳам лозим? Чанд дақиқа.", "place": "Ҷои баргузорӣ", "again": "Видеоро боз дидан"},
+  az: {"for": "Sizə dəvətnamə", "from": "{x} tərəfindən", "hint": "Açmaq üçün möhürə toxunun", "skip": "Ətraflı", "d": "gün", "h": "saat", "m": "dəqiqə", "cal": "Təqvimə əlavə et", "map": "Marşrutu aç", "q": "Gələcəksiniz?", "yes": "Bəli, gələcəyəm", "two": "İki nəfər gələcəyik", "no": "Təəssüf ki, gələ bilməyəcəyəm", "done": "Təşəkkürlər! Cavabınızı Telegram-da təsdiqləyin.", "foot": "Dəvətnamə {b} ilə hazırlanıb. Sizə də lazımdır? Bir neçə dəqiqə.", "place": "Keçiriləcəyi yer", "again": "Videonu yenidən izlə"}
 };
 const MOODS = {
   gold:{paper:"#f3ebdd",paper2:"#e6d8bf",liner:"#c9a35a",seal:"#7a1e2b",seal2:"#4f0f19",ink:"#3a2814",gold:"#b8893a",soft:"#6b5236",sheet:"#fbf6ee"},
@@ -221,6 +227,8 @@ const fmt = (s, o) => s.replace(/\{(\w)\}/g, (_, k) => o[k] ?? "");
 
 readData().then(D => {
   const t = L[D.l] || L.ru, mood = MOODS[D.s] ? D.s : "gold";
+  if (/[ӘәҒғҚқҢңӨөҰұҮүҺһӢӣӮӯҲҳҶҷ]/.test((D.n || "") + (D.tt || ""))) document.documentElement.classList.add("novibes");
+  document.documentElement.lang = D.l || "ru";
   for (const [k, v] of Object.entries(MOODS[mood])) document.documentElement.style.setProperty("--" + k, v);
   document.documentElement.lang = D.l || "ru";
   const parts = D.n.split(/\s+(?:и|va|&|ва)\s+/i);

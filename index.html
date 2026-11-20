@@ -77,12 +77,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .stage{position:fixed;inset:0;z-index:20;opacity:0;pointer-events:none;transition:opacity .9s;background:#000}
 .show .stage{opacity:1;pointer-events:auto}
 .stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.over{position:absolute;left:0;right:0;bottom:0;height:40%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+.over{position:absolute;left:0;right:0;bottom:6%;height:40%;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:0 9vw calc(4vh + env(safe-area-inset-bottom));gap:.4em}
 .over > *{opacity:0;transform:translateY(14px);transition:opacity 1s,transform 1s}
 .over .on{opacity:1;transform:none}
 .o-title{font-size:clamp(15px,4.2vw,19px);letter-spacing:.14em;color:var(--gold);font-weight:600}
 .o-names{font-family:"Vibes",cursive;font-size:clamp(44px,13vw,70px);line-height:1.05;
+  padding:.3em .14em .2em;margin:-.3em -.14em -.2em; /* градиент рисуется только в блоке строки — без запаса завитки заглавных обрезались сверху */
   background:linear-gradient(var(--n1,#c99a45),var(--n2,#6e4810));-webkit-background-clip:text;background-clip:text;color:transparent}
 .o-when{font-size:clamp(20px,5.6vw,26px);font-weight:600}
 .o-place{font-size:clamp(16px,4.4vw,20px);color:var(--soft)}
